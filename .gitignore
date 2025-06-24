@@ -1,0 +1,64 @@
+# .NET / Visual Studio
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.vscode/
+*.dbmdl
+*.pdb
+*.cache
+*.log
+*.ncb
+*.aps
+*.ilk
+*.tmp
+*.csproj.user
+
+# Paket menadžer
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Dotnet global tools
+.dotnet_tool/
+
+# Rider
+.idea/
+
+# PostgreSQL
+*.sql
+*.pgsql
+*.dump
+*.backup
+*.pgsql_tmp
+.psql_history
+
+# React / Node.js
+node_modules/
+build/
+dist/
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Mac/Linux/Windows OS fajlovi
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Optionalno: ako koristiš Docker
+docker-compose.override.yml
+*.tar

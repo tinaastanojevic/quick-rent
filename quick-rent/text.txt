@@ -1,0 +1,3 @@
+rfce za generisanje komponente
+
+npm run dev

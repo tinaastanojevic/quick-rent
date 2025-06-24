@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "Canon EOS R5 Camera",
+      "description": "High-resolution mirrorless camera suitable for professional photography and video recording.",
+      "owner": "JohnDoe",
+      "image": "/src/assets/CanonEOSR5_online1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "DJI Mavic Air 2 Drone",
+      "description": "Compact drone with 4K camera and advanced flight modes, great for aerial shots.",
+      "owner": "AvaSmith",
+      "image": "/src/assets/DJI-Mavic-Air-2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "GoPro HERO11 Black",
+      "description": "Action camera for extreme sports with waterproof design and image stabilization.",
+      "owner": "LukaM",
+      "image": "/src/assets/pdp-h11b-SA-image03-1024-2x.png"
+    },
+    {
+      "id": 4,
+      "name": "Yamaha Portable PA System",
+      "description": "Lightweight audio system ideal for events, presentations, and live performances.",
+      "owner": "EventGearRental",
+      "image": "/src/assets/yamaha-stagepas010713-4R64umliALVV66giqcxcXIEBtjq4w1v2.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Bosch Professional Drill",
+      "description": "High-powered electric drill suitable for construction and heavy-duty tasks.",
+      "owner": "ToolMaster88",
+      "image": "/src/assets/pcc101355pcta5252p1_bohr-und_schlagbohrmaschinen_530x530.jpg"
+    }
+  ]
+  
