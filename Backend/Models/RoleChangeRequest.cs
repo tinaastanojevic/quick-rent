@@ -19,8 +19,8 @@ namespace Backend.Models
 
         public RoleChangeRequest()
         {
-            Status=RequestStatus.Pending;
-             RequestDate=DateTime.UtcNow;
+            Status = RequestStatus.Pending;
+            RequestDate = DateTime.UtcNow;
         }
 
     }

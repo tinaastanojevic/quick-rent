@@ -18,18 +18,6 @@ export const loginUser = async (email, password) => {
     }
 }
 
-export const getToken = () => {
-    return localStorage.getItem('jwt_token');
-};
-
-export const setToken = (token) => {
-    localStorage.setItem("jwt_token", token);
-}
-
-export const logout = () => {
-    localStorage.removeItem('jwt_token');
-};
-
 export const registerUser = async (data) => {
     try {
         const res = await axios.post(REGISTER_URL, data);
@@ -41,9 +29,13 @@ export const registerUser = async (data) => {
     }
 }
 
-
-export const getOwnersPosts = async (username) => {
-    let res = await axiosInstance.get(`/User/profile/${username}`);
-    return res.data;
+export const getUserInfo = async (username) => {
+    try {
+        let res = await axiosInstance.get(`/User/profile/${username}`);
+        return res.data;
+    }
+    catch (error) {
+        console.error('Cant get user info: ', error);
+    }
 
 }

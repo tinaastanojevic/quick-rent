@@ -10,6 +10,7 @@ public static class ServicesRegistration
         services.AddScoped<JwtService>();
         services.AddScoped<EquipmentPublishRequestService>();
         services.AddScoped<RentalRequestService>();
+        services.AddScoped<RoleChangeRequestService>();
         
     }
 }

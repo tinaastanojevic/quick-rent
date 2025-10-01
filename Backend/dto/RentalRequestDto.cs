@@ -1,3 +1,5 @@
+using Backend.Models;
+
 public class RentalRequestDTO
 {
     public int EquipmentID { get; set; }
@@ -19,6 +21,8 @@ public class RentalRequestResponseDTO
     public DateTime EndDate { get; set; }
 
     public string? RequestedBy { get; set; }
+
+    public RequestStatus Status { get; set; }
 
 
 }

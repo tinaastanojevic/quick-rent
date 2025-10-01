@@ -15,11 +15,12 @@ namespace Backend.Services{
             _configuration = configuration;
         }
 
-        public string GenerateJwtToken(string username, string role)
+        public string GenerateJwtToken(string username, string role,int userId)
         {
             var claims = new[]
             {
             new Claim(ClaimTypes.Name, username),
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             new Claim("role", role)
 
         };
@@ -31,7 +32,7 @@ namespace Backend.Services{
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(10), 
+                expires: DateTime.Now.AddHours(1), 
                 signingCredentials: creds
             );
 

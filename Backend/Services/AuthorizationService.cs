@@ -11,14 +11,14 @@ namespace Backend.Services
     {
 
         private readonly AppDbContext _context;
-         private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
-         private readonly JwtService _jwtService;
-        public AuthorizationService(IMapper mapper,AppDbContext context,JwtService jwtService)
+        private readonly JwtService _jwtService;
+        public AuthorizationService(IMapper mapper, AppDbContext context, JwtService jwtService)
         {
             _context = context;
-            _mapper=mapper;
-            _jwtService=jwtService;
+            _mapper = mapper;
+            _jwtService = jwtService;
         }
 
         public async Task<UserResponseDTO> Register(User user)
@@ -35,13 +35,12 @@ namespace Backend.Services
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            string token = _jwtService.GenerateJwtToken(user.Username, user.Role.ToString()); 
-            var userId=user.ID;
-    
-            var userResponse=_mapper.Map<UserResponseDTO>(user);
-            userResponse.Token=token;
-         
-            return userResponse; 
+            var userId = user.ID;
+            string token = _jwtService.GenerateJwtToken(user.Username, user.Role.ToString(), userId);
+            var userResponse = _mapper.Map<UserResponseDTO>(user);
+            userResponse.Token = token;
+
+            return userResponse;
         }
 
         public async Task<UserResponseDTO> Login(UserDTO userDto)
@@ -56,14 +55,14 @@ namespace Backend.Services
 
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(userDto.Password, existingUser.Password);
 
-            if(!isPasswordValid)
-                 throw new UnauthorizedAccessException("Invalid password");
+            if (!isPasswordValid)
+                throw new UnauthorizedAccessException("Invalid password");
 
-            string token = _jwtService.GenerateJwtToken(existingUser.Username, existingUser.Role.ToString()); 
-     
+            string token = _jwtService.GenerateJwtToken(existingUser.Username, existingUser.Role.ToString(), existingUser.ID);
 
-            var user=_mapper.Map<UserResponseDTO>(existingUser);
-            user.Token=token;
+
+            var user = _mapper.Map<UserResponseDTO>(existingUser);
+            user.Token = token;
 
             return user;
         }

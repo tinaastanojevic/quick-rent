@@ -1,24 +1,23 @@
-import React, { useContext } from 'react'
-import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { AuthContext } from './context/AuthContext';
+import React, { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 
 function RequireAuth({ allowedRoles }) {
-    // const location = useLocation();
-    const { roles, isReady ,isLoggedIn} = useContext(AuthContext);
+  const { roles, isLoggedIn } = useContext(AuthContext);
 
-    if (!isReady) return <div>Loading...</div>;
+  if (isLoggedIn === null) return <div>Loading...</div>;
 
-    const hasAccess = allowedRoles.some(role => roles.includes(role));
+  const hasAccess = allowedRoles.some((role) => roles.includes(role));
 
-    return (
-        isLoggedIn ?
-        (hasAccess
-            ? <Outlet />
-            : <Navigate to="/" />
-        )
-        :
-        <Navigate to="/login" />
+  return isLoggedIn ? (
+    hasAccess ? (
+      <Outlet />
+    ) : (
+      <Navigate to="/" />
     )
+  ) : (
+    <Navigate to="/login" />
+  );
 }
 
-export default RequireAuth
+export default RequireAuth;

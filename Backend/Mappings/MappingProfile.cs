@@ -9,10 +9,12 @@ public class MappingProfile : Profile
         CreateMap<EquipmentDTO, EquipmentPublishRequest>();
 
         CreateMap<EquipmentPublishRequest, EquipmentDTO>()
-        .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserId));
+        .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserId))
+        .ForMember(dest => dest.IsAvailable, opt => opt.MapFrom(src => true));
 
         CreateMap<EquipmentPublishRequest, EquipmentResponseDTO>()
         .ForMember(dest => dest.OwnerUsername, opt => opt.MapFrom(src => src.RequestedBy.Username));
+        
 
         CreateMap<Equipment, EquipmentResponseDTO>()
         .ForMember(dest => dest.OwnerUsername, opt => opt.MapFrom(src => src.Owner.Username));
@@ -26,6 +28,9 @@ public class MappingProfile : Profile
 
         CreateMap<RentalRequest, RentalRequestResponseDTO>()
         .ForMember(dest => dest.RequestedBy, opt => opt.MapFrom(src => src.User.Username));
+
+        CreateMap<RoleChangeRequest, RoleChangeResponseDTO>()
+        .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));
 
         CreateMap<RentalRequest, Rental>()
         .ForMember(dest => dest.Renter, opt => opt.MapFrom(src => src.User))

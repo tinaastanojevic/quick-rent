@@ -37,6 +37,7 @@ artifacts/
 *.backup
 *.pgsql_tmp
 .psql_history
+.pgadmin/
 
 # React / Node.js
 node_modules/
@@ -59,6 +60,8 @@ Thumbs.db
 *.swp
 *.swo
 
-# Optionalno: ako koristiš Docker
+# Docker
 docker-compose.override.yml
 *.tar
+
+za ispravku.txt

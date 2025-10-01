@@ -57,6 +57,25 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet("getWithSpecificStatus/{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetRentalRequestsWithSpecificStatus(int id, [FromQuery] string status)
+        {
+            try
+            {
+                var res = await _rentalRequestService.GetRentalRequestsWithSpecificStatus(id,status);
+                return Ok(res);
+            }
+            catch (ArgumentNullException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPatch("{id}")]
         [Authorize(Roles = "Owner,Admin")]
         public async Task<IActionResult> ApproveOrRejectRentalRequest(int id, [FromBody] UpadeteStatusDto status)

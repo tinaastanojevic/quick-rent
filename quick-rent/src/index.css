@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -110,33 +112,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-  :root{
-    --text: black;
-    --background: white;
-    --primary: #2563EB;
-    --secondary:#9dd2af;
-    --accent: #79c793;
-  }
-}
-
-@media (prefers-color-scheme:dark)
-{
-  :root{
-    --text: rgb(255, 255, 255);
-    --background: rgb(0, 0, 0);
-    --primary:#535353;
-    --secondary:#5a5b5c;
-    --accent: #79c793;
-  }
-}
 
 html,
 body {
@@ -146,10 +121,15 @@ body {
   height: 100vh;
   display: flex;
   overflow-x: hidden;
-
+  overflow-y: auto;
 }
 
 #root {
   flex: 1;
-
 }
+
+/* @layer components {
+  .btn-primary {
+    @apply rounded-lg bg-blue-500 hover:bg-blue-600 self-end min-w-[10%] border-0 outline-none focus:ring-0;
+  }
+} */

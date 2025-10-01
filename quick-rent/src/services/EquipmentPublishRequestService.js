@@ -10,7 +10,7 @@ export const changeEquipmentPublishRequestStatus = async (id, status) => {
     return res;
 }
 
-export const createEquipmentPublishRequest = async (id,FormData) => {
-    let res = await axiosInstance.post(`/EquipmentPublishRequest/publish/${id}`,FormData);
+export const createEquipmentPublishRequest = async (id, FormData) => {
+    let res = await axiosInstance.post(`/EquipmentPublishRequest/publish/${id}`, FormData);
     return res;
 }

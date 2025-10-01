@@ -2,6 +2,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Backend.Context;
 using Backend.Models;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Services
@@ -12,19 +13,23 @@ namespace Backend.Services
         private readonly IMapper _mapper;
 
         private readonly EquipmentService _equipmentService;
-        public EquipmentPublishRequestService(IMapper mapper, AppDbContext context, EquipmentService equipmentService)
+
+        private readonly IHubContext<NotificationHub> _hubContext;
+        public EquipmentPublishRequestService(IMapper mapper, AppDbContext context, EquipmentService equipmentService, IHubContext<NotificationHub> hubContext)
         {
             _context = context;
             _mapper = mapper;
             _equipmentService = equipmentService;
+            _hubContext = hubContext;
         }
 
 
         public async Task<List<EquipmentResponseDTO>> GetAllEquipmentPublishRequests()
         {
             return await _context.EquipmentPublishRequests
-            .Where(r => r.Status == RequestStatus.Pending)
+            //.Where(r => r.Status == RequestStatus.Pending)
             .Include(p => p.RequestedBy)
+            .OrderBy(r => r.Status == RequestStatus.Pending ? 0 : 1)
             .ProjectTo<EquipmentResponseDTO>(_mapper.ConfigurationProvider)
             .ToListAsync();
         }
@@ -70,6 +75,7 @@ namespace Backend.Services
 
                 await _equipmentService.PublishEquipment(equipemnt);
                 await _context.SaveChangesAsync();
+                SendNotification(request.UserId, status);
                 return "Equipment publish request is approved, new Equipment is created!";
             }
 
@@ -77,9 +83,19 @@ namespace Backend.Services
             {
                 request.Status = RequestStatus.Rejected;
                 await _context.SaveChangesAsync();
+                SendNotification(request.UserId, status);
                 return "Equipment publish request is rejected!";
             }
 
+        }
+
+        public async void SendNotification(int id, string status)
+        {
+            await _hubContext.Clients.User(id.ToString()).SendAsync("ReceiveNotification",
+                                new
+                                {
+                                    message = $"Your equipment publish request is {status}!"
+                                });
         }
 
         public async Task<string> SaveImage(IFormFile image)
