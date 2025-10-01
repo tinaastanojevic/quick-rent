@@ -64,4 +64,6 @@ Thumbs.db
 docker-compose.override.yml
 *.tar
 
+appsettings*.json
+
 za ispravku.txt
