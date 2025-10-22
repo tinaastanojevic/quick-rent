@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { getUserInfo } from "../../services/UserService";
-import { getRentalRequests } from "../../services/RentalService";
+import { getRentalRequests,approveOrRejectRequest } from "../../services/RentalService";
 import { sendRoleChangeRequest } from "../../services/RoleChangeRequest";
 import EquipmentCard from "../EquipmentCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,7 +9,8 @@ import { AuthContext } from "../../context/AuthContext";
 import RequestCard from "../RequestCard";
 import RequestsFilter from "../RequestsFilter";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery,useQueryClient } from "@tanstack/react-query";
+
 
 function ProfilePage() {
   const [userInfo, setUserInfo] = useState({});
@@ -19,6 +20,7 @@ function ProfilePage() {
   const { getUserId, getUsername, roles } = useContext(AuthContext);
   const { username } = useParams();
 
+  const queryClient = useQueryClient();
   const isCustomerProfile = roles.includes("Customer");
 
   useEffect(() => {
@@ -44,6 +46,12 @@ function ProfilePage() {
     queryFn: () => getRentalRequests(getUserId()),
     enabled: !isCustomerProfile,
   });
+
+   const handleRentalRequest = async (id, status) => {
+       let data = await approveOrRejectRequest(id, status);
+       queryClient.invalidateQueries(["rentalRequests", getUserId()]);
+          alert(data);
+    };
 
   const filteredRequests = useMemo(() => {
     if (requestsStatus === "All") return rentalRequests;
@@ -134,7 +142,7 @@ function ProfilePage() {
                 requestsStatus={requestsStatus}
                 showRequestsWithSpecificStatus={showRequestsWithSpecificStatus}
               />
-              <RequestCard requests={filteredRequests} />
+              <RequestCard requests={filteredRequests} handleRentalRequest={handleRentalRequest} />
             </>
           )}
         </>

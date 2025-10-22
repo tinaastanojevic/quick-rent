@@ -119,7 +119,7 @@ function EquipmentPage() {
                   <button
                     id="rentThisButton"
                     onClick={rentEquipment}
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg shadow transition-all text-lg w-max"
+                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg shadow transition-all text-lg w-max cursor-pointer"
                   >
                     Rent this
                   </button>
@@ -138,7 +138,7 @@ function EquipmentPage() {
                       />
                       <button
                         onClick={sendRentRequest}
-                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg shadow transition-all text-lg self-end"
+                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg shadow transition-all text-lg self-end cursor-pointer"
                       >
                         Rent
                       </button>

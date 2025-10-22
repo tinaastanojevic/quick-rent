@@ -3,9 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-
-
-
     [Table("User")]
     public class User
     {
@@ -22,15 +19,15 @@ namespace Backend.Models
 
         public required UserRole Role { get; set; }
 
-        public virtual ICollection<Equipment>? Equipments{get;set;}
+        public virtual ICollection<Equipment>? Equipments { get; set; }
 
-        public virtual ICollection<RentalRequest>? RentalRequests { get; set; } 
+        public virtual ICollection<RentalRequest>? RentalRequests { get; set; }
 
         public virtual ICollection<EquipmentPublishRequest>? EquipmentPublishRequests { get; set; }
 
 
     }
-        public enum UserRole
+    public enum UserRole
     {
         Admin,
         Customer,

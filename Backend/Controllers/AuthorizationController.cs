@@ -10,8 +10,6 @@ namespace Backend.Controllers
     [Route("api/[controller]")]
     public class AuthorizationController : ControllerBase
     {
-
-
         private readonly AuthorizationService _authorizationService;
 
         public AuthorizationController(AuthorizationService authorizationService)

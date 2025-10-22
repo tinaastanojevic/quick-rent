@@ -46,6 +46,23 @@ function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
+
+        <DropdownMenu>
+              <DropdownMenuTrigger className="text-foreground text-xl cursor-pointer pl-3 pr-3 border-none outline-none focus:outline-none focus:ring-0">
+                Categories
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card text-card-foreground shadow-lg rounded-md min-w-[150px]">
+                {categories.map((category, index) => (
+                  <DropdownMenuItem
+                    key={index}
+                    className="focus:outline-none text-xl cursor-pointer"
+                    onClick={() => selectCategory(category)}
+                  >
+                    {category}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
         {!isLoggedIn ? (
           <a href="/login" className="text-foreground text-xl cursor-pointer">
             Login
@@ -62,22 +79,7 @@ function Navbar() {
               </a>
             )}
 
-            <DropdownMenu>
-              <DropdownMenuTrigger className="text-foreground text-xl cursor-pointer pl-3 pr-3 border-none outline-none focus:outline-none focus:ring-0">
-                Categories
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-card text-card-foreground shadow-lg rounded-md min-w-[150px]">
-                {categories.map((category, index) => (
-                  <DropdownMenuItem
-                    key={index}
-                    className="focus:outline-none text-xl cursor-pointer"
-                    onClick={() => selectCategory(category)}
-                  >
-                    {category}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            
 
             <DropdownMenu>
               <DropdownMenuTrigger

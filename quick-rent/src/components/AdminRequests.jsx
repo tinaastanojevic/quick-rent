@@ -9,7 +9,7 @@ import {
   getAllRoleChangeRequests,
   changeRole,
 } from "../services/RoleChangeRequest";
-import { getRentalRequests } from "../services/RentalService";
+import { getRentalRequests,approveOrRejectRequest } from "../services/RentalService";
 import RequestCard from "./RequestCard";
 import RequestsFilter from "./RequestsFilter";
 import PublishRequests from "./PublishRequests";
@@ -40,6 +40,12 @@ function AdminRequests() {
   const handleRoleRequest = async (id, status) => {
     await changeRole(id, status);
     queryClient.invalidateQueries(["requests", requestType]);
+  };
+
+  const handleRentalRequest = async (id, status) => {
+     let data = await approveOrRejectRequest(id, status);
+     queryClient.invalidateQueries(["requests", requestType]);
+        alert(data);
   };
 
   const getRequestsByType = (type) => {
@@ -101,7 +107,7 @@ function AdminRequests() {
                   No rental requests!
                 </label>
               ) : (
-                <RequestCard requests={filteredRequests} />
+                <RequestCard requests={filteredRequests}  handleRentalRequest={handleRentalRequest}/>
               )}
             </div>
           )}

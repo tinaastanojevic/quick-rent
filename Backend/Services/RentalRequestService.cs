@@ -94,8 +94,6 @@ namespace Backend.Services
                 SendNotification(request.UserID, status);
                 return "Item is rejected!";
             }
-
-
         }
 
         public async void SendNotification(int id, string status)

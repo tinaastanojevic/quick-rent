@@ -1,14 +1,16 @@
 import React from "react";
 import { format, formatDistanceToNow, parseISO } from "date-fns";
-import { approveOrRejectRequest } from "../services/RentalService";
+//import { approveOrRejectRequest } from "../services/RentalService";
 
-function RequestCard({ requests }) {
-  const handleRequest = async (id, status) => {
-    console.log(id + status);
-    let data = await approveOrRejectRequest(id, status);
+function RequestCard({ requests,handleRentalRequest }) {
+    //const queryClient = queryClient();
 
-    alert(data);
-  };
+//   const handleRequest = async (id, status) => {
+//     console.log(id + status);
+// //     let data = await approveOrRejectRequest(id, status);
+// //  queryClient.invalidateQueries(["requests", requestType]);
+// //     alert(data);
+//   };
 
   return (
     <div className="flex flex-col justify-center items-center p-2">
@@ -58,13 +60,13 @@ function RequestCard({ requests }) {
               <div className="flex flex-col h-full justify-between p-2">
                 <div className="flex gap-2">
                   <button
-                    onClick={() => handleRequest(request.id, "Approved")}
+                    onClick={() => handleRentalRequest(request.id, "Approved")}
                     className="bg-green-600 text-white text-xl p-2 rounded-lg hover:bg-green-500 transition-colors cursor-pointer"
                   >
                     Approve
                   </button>
                   <button
-                    onClick={() => handleRequest(request.id, "Rejected")}
+                    onClick={() => handleRentalRequest(request.id, "Rejected")}
                     className="bg-red-600 text-white text-xl p-2 rounded-lg hover:bg-red-500 transition-colors cursor-pointer"
                   >
                     Reject

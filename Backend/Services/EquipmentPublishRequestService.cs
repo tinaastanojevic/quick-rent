@@ -37,7 +37,6 @@ namespace Backend.Services
 
         public async Task<string> CreateEquipmentPublishRequest(int id, EquipmentDTO equipmentDto)
         {
-
             if (equipmentDto == null)
                 throw new ArgumentException("Equipment does not exist.");
 

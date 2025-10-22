@@ -93,7 +93,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseStaticFiles();
-// Routing i middleware redosled
 app.UseRouting();
 
 app.UseCors("CORS");

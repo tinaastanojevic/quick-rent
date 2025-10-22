@@ -53,14 +53,11 @@ namespace Backend.Services
         {
             var equipments = await _context.Equipments.ToListAsync();
             var categories = equipments.Select(c => c.Category).Distinct().ToList();
-
             return categories;
-
         }
 
         public async Task<string> PublishEquipment(EquipmentDTO equipmentDto)
         {
-
             if (equipmentDto == null)
                 throw new ArgumentException("Equipment does not exist.");
 
@@ -74,7 +71,6 @@ namespace Backend.Services
 
             _context.Equipments.Add(equipment);
             // await _context.SaveChangesAsync();
-            // Console.WriteLine(equipment);
              return "Equipment is succesfully published!";
         }
 

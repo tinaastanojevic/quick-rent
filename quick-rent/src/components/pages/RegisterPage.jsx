@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 export default function RegisterPage() {
+  
   const {
     register,
     handleSubmit,
@@ -18,7 +19,7 @@ export default function RegisterPage() {
   const { register: registerFromContext, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  if (isLoggedIn === null) return <div>Loading...</div>;
+  //if (isLoggedIn === null) return <div>Loading...</div>;
 
   if (isLoggedIn) return <Navigate to="/" replace />;
 
